@@ -1,0 +1,12 @@
+# Dependency directory
+node_modules
+
+# API keys and secrets
+.env
+
+# Ignore built ts files
+dist/**/*
+
+# Ignore editor files
+.vscode/**
+.idea

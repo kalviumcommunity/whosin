@@ -1,0 +1,3 @@
+export const EXPRESS_CONTEXT = 'EXPRESS_SERVER';
+export const REDIS_CONTEXT = 'REDIS_CLIENT';
+export const SESSION_CONTEXT = 'WHOSIN_SERVER';
