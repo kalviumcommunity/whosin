@@ -7,8 +7,7 @@ services:
     ports:
       - '127.0.0.1:6379:6379'
       - '8001:8001'
-    environment:
-      - REDIS_ARGS=--requirepass unsecure-password-7RElMQM3oF
+    env_file: .env.docker
     volumes:
       - redis_data:/data
     healthcheck:
@@ -25,11 +24,7 @@ services:
         condition: service_healthy
     image: whosin:latest
     container_name: whosin-server
-    environment:
-      - REDIS_HOST=redis-stack
-      - REDIS_PORT=6379
-      - REDIS_PASSWORD=unsecure-password-7RElMQM3oF
-      - PORT=8080
+    env_file: .env.docker
     ports:
       - '3443:8080'
     networks:
