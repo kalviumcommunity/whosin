@@ -29,9 +29,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/kalviumcommunity/whosin">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
 <h3 align="center">Who's in?</h3>
 
@@ -81,9 +78,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+This is an open-source attendance tracking server. It is designed to be have multiple modes which are different ways to track attendance. The different modes are explained in the [Modes](#modes) section.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -91,14 +86,10 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![TypeScript][Typescript]][Typescript-url]
+* [![Docker][Docker]][Docker-url]
+* [![Redis][Redis]][Redis-url]
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -107,32 +98,43 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these steps.
 
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
+
   ```sh
   npm install npm@latest -g
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+The easiest way to get started is to use docker-compose. This will build the server and database images and start them up.
+
+1. Install Docker. You can find instructions for your OS [here](https://docs.docker.com/get-docker/).
+
 2. Clone the repo
    ```sh
    git clone https://github.com/kalviumcommunity/whosin.git
    ```
-3. Install NPM packages
+
+3. File the .env file with the required values. You can use the .env.example file as a template. You may skip the redis config, if using `docker-compose.yml`.
+
+4. Create the docker image
    ```sh
-   npm install
+   docker build -t whosin .
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+
+5. Start the server
+   ```sh
+    docker compose up
+    ```
+
+5. The server will be running on port 3443. You can access the server at http://localhost:3443/.
+  
+   Additionally, you can access the redis insights at http://localhost:8001/. The default password is `unsecure-password-7RElMQM3oF`. Learn more about redis insights [here](https://redislabs.com/redis-enterprise/redis-insight/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -152,10 +154,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [x] Manual Mode
+
 
 See the [open issues](https://github.com/kalviumcommunity/whosin/issues) for a full list of proposed features (and known issues).
 
@@ -172,9 +172,9 @@ If you have a suggestion that would make this better, please fork the repo and c
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+2. Create your Feature Branch (`git checkout -b feat/amazing-feature`)
+3. Commit your Changes (`git commit -m 'Add some Amazing Feature'`)
+4. Push to the Branch (`git push origin feat/amazing-feature`)
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -184,7 +184,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -211,6 +211,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [issues-shield]: https://img.shields.io/github/issues/kalviumcommunity/whosin.svg?style=for-the-badge
 [issues-url]: https://github.com/kalviumcommunity/whosin/issues
 [license-shield]: https://img.shields.io/github/license/kalviumcommunity/whosin.svg?style=for-the-badge
-[license-url]: https://github.com/kalviumcommunity/whosin/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[license-url]: https://github.com/kalviumcommunity/whosin/blob/master/LICENSE
 [product-screenshot]: images/screenshot.png
+[Typescript-url]: https://www.typescriptlang.org/
+[Typescript]: https://img.shields.io/badge/-TypeScript-3178c6?style=flat-square&logo=typescript&logoColor=white
+[Docker-url]: https://www.docker.com/
+[Docker]: https://img.shields.io/badge/-Docker-2496ed?style=flat-square&logo=docker&logoColor=white
+[Redis-url]: https://redis.io/
+[Redis]: https://img.shields.io/badge/-Redis-dc382d?style=flat-square&logo=redis&logoColor=white
