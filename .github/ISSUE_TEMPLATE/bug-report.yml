@@ -1,0 +1,36 @@
+name: "🐛 Report a Bug"
+description: Report errors or unexpected behavior
+labels: ['bug']
+title: '[Bug]: '
+body:
+  - id: intro-md
+    type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please ensure you provide as much information as possible to better assist in confirming and identifying a fix for the bug.
+
+  - id: existing-issue
+    type: checkboxes
+    attributes:
+      label: 'Verified issue does not already exist?'
+    description: 'Please search to see if an issue already exists for the issue you encountered.'
+    options:
+      - label: 'I have searched and found no existing issue'
+        required: true
+
+  - id: expectedbehavior
+    type: textarea
+    attributes:
+      label: Expected result
+      description: If you want to include screenshots, paste them into the markdown editor below.
+      placeholder: Tell us what you were expecting to happen.
+    validations:
+      required: false
+
+  - id: actualbehavior
+    type: textarea
+    attributes:
+      label: Actual result
+      placeholder: Tell us what happened.
+    validations:
+      required: true

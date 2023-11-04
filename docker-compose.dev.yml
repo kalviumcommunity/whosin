@@ -33,7 +33,6 @@ services:
 networks:
   whosin-network:
     name: 'whosin-network'
-    external: true
 
 volumes:
   redis_data:

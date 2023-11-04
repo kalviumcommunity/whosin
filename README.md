@@ -102,11 +102,12 @@ To get a local copy up and running follow these steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+* NodeJS  
+  You can download NodeJS from [here](https://nodejs.org/en/download/).
+* Docker  
+  You can download Docker from [here](https://www.docker.com/products/docker-desktop).
 
-  ```sh
-  npm install npm@latest -g
-  ```
+ 
 
 ### Installation
 
@@ -128,7 +129,7 @@ The easiest way to get started is to use docker-compose. This will build the ser
 
 5. Start the server
    ```sh
-    docker compose up
+    docker compose -f .\docker-compose.dev.yml up
     ```
 
 5. The server will be running on port 3443. You can access the server at http://localhost:3443/.
