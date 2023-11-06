@@ -1,0 +1,18 @@
+name: "📄 Documentaion Issue"
+description: Report errors or unexpected behavior in the documentation
+labels: ['documentation']
+title: '[Documentation]: '
+body:
+  - id: intro-md
+    type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this documentation issue! Please ensure you provide as much information as possible to better assist in confirming and identifying a fix for the issue.
+
+  - id: description
+    type: textarea
+    attributes: 
+      label: Provide a description of requested docs changes
+      placeholder: Briefly describe which document needs to be corrected and why.
+    validations:
+      required: true

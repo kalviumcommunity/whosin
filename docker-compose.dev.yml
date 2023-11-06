@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  redis-stack:
+    image: redis/redis-stack:latest
+    container_name: redis-stack
+    ports:
+      - '127.0.0.1:6379:6379'
+      - '8001:8001'
+    env_file: .env.docker
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - whosin-network
+
+  whosin:
+    build: .
+    depends_on:
+      redis-stack:
+        condition: service_healthy
+    image: whosin:latest
+    container_name: whosin-server
+    env_file: .env.docker
+    ports:
+      - '3443:8080'
+    networks:
+      - whosin-network
+
+networks:
+  whosin-network:
+    name: 'whosin-network'
+
+volumes:
+  redis_data:
+    name: 'redis_data'

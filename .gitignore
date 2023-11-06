@@ -10,3 +10,7 @@ dist/**/*
 # Ignore editor files
 .vscode/**
 .idea
+
+# Ignore development files
+*.log
+.husky

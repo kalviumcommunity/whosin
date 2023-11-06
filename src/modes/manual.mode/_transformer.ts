@@ -11,11 +11,13 @@ const _sanitizeFacilitators = (facilitators: any[]): any[] => {
 
 const formatLogs = (logs: any[]): any[] => {
     // format the logs as [action, data]
-    return logs.map((log: { action: string; data: any | null, timestamp: number }) => {
-        const { action, data, timestamp } = log;
+    return logs.map(
+        (log: { action: string; data: any | null; timestamp: number }) => {
+            const { action, data, timestamp } = log;
 
-        return `[${timestamp},${action},${data}]`;
-    });
+            return `[${timestamp},${action},${data}]`;
+        }
+    );
 };
 
 const manualTransformer = {

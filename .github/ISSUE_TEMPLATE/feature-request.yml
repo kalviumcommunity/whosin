@@ -1,0 +1,36 @@
+name: "🚀 Suggest a new feature or improvement"
+description: Suggest a new feature or improvement
+labels: ['enhancement']
+title: '[Enhancement]: '
+body: 
+  - id: intro-md
+    type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this feature request! Please ensure you provide as much information as possible to better assist in confirming and identifying a fix for the issue.
+  
+  - id: existing-issue
+    type: checkboxes
+    attributes:
+      label: 'Verified feature does not already exist?'
+    description: |
+      Please search to see if an issue or PR already exists for the feature you're requesting.
+    options:
+      - label: I have searched and found no existing issue
+        required: true
+
+  - id: description
+    type: textarea
+    attributes: 
+      label: Suggested new feature or improvement
+      placeholder: Tell us about the new feature or improvement you'd like to see.
+    validations:
+      required: true
+
+- id: scenario
+  type: textarea
+  attributes:
+    label: Scenario
+    placeholder: How could this new feature be used? Feel free to provide examples.
+  validations:
+    required: true
