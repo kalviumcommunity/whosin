@@ -11,13 +11,13 @@ body:
   
   - id: existing-issue
     type: checkboxes
-      attributes:
-        label: 'Verified feature does not already exist?'
-    description: |
-      Please search to see if an issue or PR already exists for the feature you're requesting.
+    attributes:
+      label: 'Verified issue does not already exist?'
       options:
-        - label: I have searched and found no existing issue
+        - label: 'I have searched and found no existing issue'
           required: true
+    validations:
+      required: true
 
   - id: description
     type: textarea
