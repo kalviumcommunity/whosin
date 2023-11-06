@@ -12,11 +12,10 @@ body:
   - id: existing-issue
     type: checkboxes
     attributes:
-      label: 'Verified issue does not already exist?'
-    description: 'Please search to see if an issue already exists for the issue you encountered.'
-    options:
-      - label: 'I have searched and found no existing issue'
+      options:
+        label: 'I have searched and found no existing issue'
         required: true
+    description: 'Please search to see if an issue already exists for the issue you encountered.'
 
   - id: expectedbehavior
     type: textarea
