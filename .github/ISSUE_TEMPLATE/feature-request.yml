@@ -27,10 +27,10 @@ body:
     validations:
       required: true
 
-- id: scenario
-  type: textarea
-  attributes:
-    label: Scenario
-    placeholder: How could this new feature be used? Feel free to provide examples.
-  validations:
-    required: true
+  - id: scenario
+    type: textarea
+    attributes:
+        label: Scenario
+        placeholder: How could this new feature be used? Feel free to provide examples.
+    validations:
+        required: true
