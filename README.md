@@ -101,46 +101,43 @@ To get a local copy up and running follow these steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* NodeJS  
+- Git  
+  You can download Git from [here](https://git-scm.com/downloads).
+- NodeJS  
   You can download NodeJS from [here](https://nodejs.org/en/download/).
-* Docker  
+- Redis
+  You can download Redis from [here](https://redis.io/download).
+- Docker  
   You can download Docker from [here](https://www.docker.com/products/docker-desktop).
 
- 
 
 ### Installation
 
-The easiest way to get started is to use docker-compose. This will build the server and database images and start them up.
-
-1. Install Docker. You can find instructions for your OS [here](https://docs.docker.com/get-docker/).
-
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/kalviumcommunity/whosin.git
    ```
 
-3. File the .env file with the required values. You can use the .env.example file as a template. You may skip the redis config, if using `docker-compose.yml`.
+2. File the .env file with the required values. You can use the .env.example file as a template. You may skip the redis config, if using `docker-compose.yml`.
 
-4. Create the docker image
-   ```sh
-   docker build -t whosin .
-   ```
-
-5. Start the server
+3. Start the server
    ```sh
     docker compose -f .\docker-compose.dev.yml up
     ```
 
-5. The server will be running on port 3443. You can access the server at http://localhost:3443/.
+4. The server will be running on port 3443. You can access the server at http://localhost:3443/.
   
    Additionally, you can access the redis insights at http://localhost:8001/. The default password is `unsecure-password-7RElMQM3oF`. Learn more about redis insights [here](https://redislabs.com/redis-enterprise/redis-insight/).
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+
 <!-- MODES -->
 ## Modes
+
+A Mode refers to how the server tracks the attendance. The server can be configured to use any of the registerd modes while creating a new session. The server comes with a `Manual` mode.
 
 Addional mode to the server can be added by extending the `BaseMode` interface. The `BaseMode` interface is defined in [src/modes/baseMode.ts](./src/modes/baseMode.ts). The `BaseMode` interface has the following methods:
 
@@ -157,7 +154,28 @@ interface BaseMode {
 }
 ```
 
-A `Manual` mode is already implemented. You can find the implementation in [src/modes/manual.mode/manual.ts](./src/modes/manual.mode/manual.ts). Refer to the [Manual Mode](./docs/MANUAL.README.md) section for more information.
+In order to create a session the following attributes are standard:
+
+```ts
+export interface Session {
+    start_time: string;
+    end_time: string;
+    callback: string;
+    mode: string;
+    participants: any[];
+    metadata: any;
+}
+```
+
+- start_time: The start time of the session.
+- end_time: The end time of the session.
+- callback: The callback URL to be called when the session ends.
+- mode: The mode to be used for the session. (One of the registered modes)
+- participants: The list of participants in the session.
+- metadata: Any additional information required by the mode.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 <!-- ROADMAP -->
@@ -178,14 +196,7 @@ See the [open issues](https://github.com/kalviumcommunity/whosin/issues) for a f
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feat/amazing-feature`)
-3. Commit your Changes (`git commit -m 'Add some Amazing Feature'`)
-4. Push to the Branch (`git push origin feat/amazing-feature`)
-5. Open a Pull Request
+Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for details on how to setup this project locally and the process for submitting pull requests to us.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

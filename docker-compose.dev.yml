@@ -19,6 +19,7 @@ services:
       - whosin-network
 
   whosin:
+    build: .
     depends_on:
       redis-stack:
         condition: service_healthy
