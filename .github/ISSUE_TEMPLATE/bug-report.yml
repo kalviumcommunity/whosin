@@ -11,9 +11,9 @@ body:
 
   - id: existing-issue
     type: checkboxes
-      attributes:
-        options:
-          - label: 'I have searched and found no existing issue'
+    attributes:
+      options:
+        label: 'I have searched and found no existing issue'
     description: 'Please search to see if an issue already exists for the issue you encountered.'
     validations:
       required: true
