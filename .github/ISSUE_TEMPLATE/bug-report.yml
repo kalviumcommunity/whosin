@@ -12,8 +12,10 @@ body:
   - id: existing-issue
     type: checkboxes
     attributes:
+      label: 'Verified issue does not already exist?'
       options:
         - label: 'I have searched and found no existing issue'
+          required: true
     validations:
       required: true
 
