@@ -67,7 +67,7 @@ const _filterFacilitators = (facilitators: any[], userKey: string): any[] => {
 
 const _calculateAttendance = (
     logs: { action: string; data: any }[],
-    participants: any[],
+    participants: any[]
 ): any[] => {
     const defaultStatus = 'pending';
 
@@ -90,7 +90,6 @@ const _calculateAttendance = (
             if (participant) {
                 participant.status = status;
             }
-
         }
     });
 

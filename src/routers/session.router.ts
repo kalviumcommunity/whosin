@@ -9,11 +9,7 @@ const router = express.Router();
 
 router.get('/', [withToken], sessionController.getSessions);
 router.post('/', [withToken], sessionController.createSession);
-router.get(
-    '/:sessionId',
-    [withSessionInfo],
-    sessionController.getSessionInfo
-);
+router.get('/:sessionId', [withSessionInfo], sessionController.getSessionInfo);
 router.post('/:sessionId', [withSessionInfo], sessionController.recordEntry);
 router.patch(
     '/:sessionId',
