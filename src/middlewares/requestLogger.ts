@@ -17,21 +17,21 @@ export default (req: Request, res: Response, next: NextFunction) => {
             statusCode >= 500
                 ? 'red'
                 : statusCode >= 400
-                ? 'yellow'
-                : statusCode >= 300
-                ? 'cyan'
-                : 'green';
+                  ? 'yellow'
+                  : statusCode >= 300
+                    ? 'cyan'
+                    : 'green';
 
         const methodColor =
             method === 'GET'
                 ? 'cyan'
                 : method === 'POST'
-                ? 'magenta'
-                : method === 'PUT'
-                ? 'blue'
-                : method === 'DELETE'
-                ? 'red'
-                : 'gray';
+                  ? 'magenta'
+                  : method === 'PUT'
+                    ? 'blue'
+                    : method === 'DELETE'
+                      ? 'red'
+                      : 'gray';
 
         const statusLabel = chalk[statusColor].bold(`[${statusCode}]`);
         const methodLabel = chalk[methodColor].bold(`${method}`);

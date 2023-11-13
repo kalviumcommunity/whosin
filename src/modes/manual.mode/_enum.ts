@@ -1,5 +1,5 @@
-enum Action {
-    MARK = "mark",
+enum Actions {
+    MARK = 'mark'
 }
 
-export default { Action };
+export { Actions };
