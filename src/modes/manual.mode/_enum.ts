@@ -2,4 +2,4 @@ enum Action {
     MARK = "mark",
 }
 
-export { Action };
+export default { Action };
