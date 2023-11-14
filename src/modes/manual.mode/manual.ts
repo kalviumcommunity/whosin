@@ -11,6 +11,7 @@ import BaseMode from '../baseMode';
 
 import { reporter } from './_reporter';
 import { manualTransformer } from './_transformer';
+import ACTIONS  from './_enum';
 
 class ManualMode implements BaseMode {
     modeName: string = 'MANUAL';
@@ -92,7 +93,7 @@ class ManualMode implements BaseMode {
 
         const validatedRecord = await this._isValidRecord(action, params);
 
-        if (validatedRecord.action === 'mark') {
+        if (validatedRecord.action === ACTIONS.MARK) {
             const facilitator = facilitatorsMap.get(key);
 
             if (!facilitator) {
@@ -110,7 +111,7 @@ class ManualMode implements BaseMode {
                 if (!participant) return;
 
                 logPromises.push(
-                    this._logToRedis(sessionInfo, 'mark', [
+                    this._logToRedis(sessionInfo, ACTIONS.MARK, [
                         facilitator.id,
                         participant.id,
                         value
@@ -140,7 +141,7 @@ class ManualMode implements BaseMode {
     private _isValidRecord = (action: any, params: any) => {
         const schema = Joi.object({
             action: Joi.string()
-                .valid('mark')
+                .valid(...Object.values(ACTIONS))
                 .required()
                 .messages({ 'any.only': 'Invalid action type.' }),
             params: Joi.object()
