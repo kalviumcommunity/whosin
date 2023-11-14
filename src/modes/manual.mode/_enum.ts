@@ -1,5 +1,5 @@
-enum Actions {
+enum ACTIONS {
     MARK = 'mark'
 }
 
-export { Actions };
+export default ACTIONS;
