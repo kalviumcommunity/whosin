@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+import * as path from 'path';
 import logger from '../logger';
 import BaseMode from '../modes/baseMode';
 import { isModeInstanceValid } from '../validators/mode.validator';
@@ -29,6 +31,24 @@ class ModeRegistry {
                 `Registered mode: ${modeInstance.modeName}`
             );
         });
+    }
+
+    static modesRegisterFromDir(dirPath: string): void {
+        const modes: any[] = [];
+
+        const files = fs.readdirSync(dirPath);
+        files.forEach((f) => {
+            const filePath = path.join(dirPath, f);
+            if (fs.statSync(filePath).isDirectory()) {
+                const modeFilePath = path.join(filePath, `${f}.ts`);
+                if (fs.existsSync(modeFilePath)) {
+                    const modeClass = require(modeFilePath).default;
+                    const modeObject = new modeClass();
+                    modes.push(modeObject);
+                }
+            }
+        });
+        this.registerModes(modes);
     }
 
     static getMode(modeName: string): BaseMode {
