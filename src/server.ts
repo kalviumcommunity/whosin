@@ -7,14 +7,18 @@ import redisClient from './helpers/redisClient';
 import logger from './logger';
 
 import ManualMode from './modes/manual.mode/manual';
+import * as path from 'path';
+import { modesRegisterFromDir } from './utility';
 
 // Initialize the redis client
 redisClient.initialize();
 
-const manualMode = new ManualMode();
+// const manualMode = new ManualMode();
 
 // Register the modes
-ModeRegistry.registerModes([manualMode]);
+// ModeRegistry.registerModes([manualMode]);
+const newModesDir = path.join(__dirname, 'modes');
+modesRegisterFromDir(newModesDir);
 
 app.listen(PORT, () => {
     logger.info(EXPRESS_CONTEXT, `Server running on port ${PORT}`);
