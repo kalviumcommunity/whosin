@@ -1,0 +1,12 @@
+.maincontainer{
+  display: flex;
+  flex-direction: row;
+}
+
+.navbarcontainer{
+  flex: 1 1 0;
+}
+
+.routescontainer{
+  flex: 3 1 0;
+}
