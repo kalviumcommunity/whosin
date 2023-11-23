@@ -10,7 +10,8 @@ function IndSession() {
     const params = useParams();
     const token = process.env.REACT_APP_TOKEN
     const navigate = useNavigate()
-
+    const keyData = JSON.parse(localStorage.getItem(params.id))
+    
     const {
         register,
         handleSubmit,
@@ -18,16 +19,22 @@ function IndSession() {
       } = useForm();
     const [data,setData] = useState([])
     const [value,setValue] = useState("")
-
+ 
     
     const querysearch = async () =>{
-         setValue(document.getElementById("query").value);
+         var facilitator_name = document.getElementById("query").value;
+         keyData.metadata.facilitators.forEach(facilitator_info => {
+            if(facilitator_info.id === facilitator_name){
+                setValue(facilitator_info.key);
+            }
+         });
         await axios.get(process.env.REACT_APP_BASE_URL+ params.id,{
             params : {
                 key : value
             }
         }).then((res)=>{
             setData(res.data.participants);
+            
         }).catch((err) => {
             console.log(err)
         })
@@ -38,6 +45,21 @@ function IndSession() {
         const presentData = data.present.split(",");
         const absentData = data.absent.split(",")
         
+        for(let i = 0;i<presentData.length;i++){
+            keyData.participants.forEach(partcipant_info => {
+                if(partcipant_info.id === presentData[i]){
+                    presentData[i] = partcipant_info.key
+                }
+             });
+        }
+        for(let i = 0;i<absentData.length;i++){
+            keyData.participants.forEach(partcipant_info => {
+                if(partcipant_info.id === absentData[i]){
+                    absentData[i] = partcipant_info.key
+                }
+             });
+        }
+
         if(presentData[0] !== ""){
             for(var i = 0;i<presentData.length;i++){
                 paramsdata[presentData[i]] = "present";
@@ -56,8 +78,6 @@ function IndSession() {
             params : paramsdata
         }
 
-        console.log(params.id)
-        console.log(body)
         await axios.post(process.env.REACT_APP_BASE_URL+ params.id,body,{
             params : {
                 key : value
@@ -131,7 +151,7 @@ function IndSession() {
         <div className='queryContainer'>
         <label>Facilitator's Key</label>
         <input type='text' id="query" ></input>
-        <button onClick={()=>querysearch()}>Submit</button>
+        <button onClick={()=>querysearch(this)}>Submit</button>
 
         {data.length > 0 && 
             <ParticipantDetail />

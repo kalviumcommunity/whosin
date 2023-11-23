@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import './css/session.css'
 import { useNavigate } from 'react-router-dom'
+
+
 function  Sessions() {
     const navigate = useNavigate();
     const token = process.env.REACT_APP_TOKEN
@@ -11,13 +13,13 @@ function  Sessions() {
         
         await axios.get(process.env.REACT_APP_BASE_URL,{headers : {"Authorization" : `${token}`}}).then((res)=>{
             setSessionList(res.data.sessions)
-            console.log(res.data.sessions)
         })
         };
     React.useEffect(() =>{
         
         getdata();
-    })
+        
+    },[])
     
     
   return (

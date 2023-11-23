@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './css/create.css'
 import {useForm} from 'react-hook-form'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function CreateSession() {
     const token = process.env.REACT_APP_TOKEN
-    const [participantsList,setParticipantsList] = useState([]);
-    const [facilitatorsList,setFacilitatorsList] = useState([]);
-    const[sessionId,setSessionId] = useState('');
     const {
         register,
         handleSubmit
         
       } = useForm();
+
+      const navigate = useNavigate()
     
       const onSubmit = async (data) => {
         const mode = "MANUAL"
@@ -31,46 +31,15 @@ function CreateSession() {
                 "facilitators" : facilitators
             }
         },{headers : {"Authorization" : `${token}`}}).then((res)=>{
-          console.log(data)
-            setParticipantsList(res.data.participants)
-            setFacilitatorsList(res.data.metadata.facilitators)
-            setSessionId(res.data.session_id)
+            alert(`Succesfully Created Session With ID : ${res.data.session_id}`)
+            localStorage.setItem(res.data.session_id,JSON.stringify(res.data))
+            navigate('/')
         }).catch((err) =>{
             console.log(err);
         })
         
         
       };
-
-      function ParticipantDetail(){
-        return(
-            <div>
-                <h3>Session Id : {sessionId}</h3>
-                <h3>participants list</h3>
-                <div className='participantContainer'>
-                {participantsList.map((partcipant) =>{
-                    return(
-                        <div className='participantDetail'>
-                            <div>{partcipant.id}</div>
-                            <div>{partcipant.key}</div>
-                        </div>
-                    )
-                })}
-                </div>
-                <h3>Facilitators List</h3>
-                <div className='participantContainer'>
-                {facilitatorsList.map((facilitator) =>{
-                    return(
-                        <div className='participantDetail'>
-                            <div>{facilitator.id}</div>
-                            <div>{facilitator.key}</div>
-                        </div>
-                    )
-                })}
-                </div>
-            </div>
-        )
-    }
 
   return (
     <div className='formContainer'>
@@ -97,11 +66,7 @@ function CreateSession() {
           <label></label>
           <button type="submit">Submit</button>
         </div>
-        <div>
-          {(participantsList.length > 0 || facilitatorsList.length > 0) &&
-          <ParticipantDetail />
-          }
-        </div>
+        
       </form>
     </div>
   )
